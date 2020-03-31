@@ -26,6 +26,9 @@ export default class DistanceLearning extends Component {
 
   componentDidMount() {
     this.getDuration()
+
+    //refresh every hour
+    this.interval = setInterval(this.getDuration, 60*60*1000)
   }
 
   //populate this.state.duration from local storage
@@ -65,7 +68,7 @@ export default class DistanceLearning extends Component {
       let diff = Math.floor(Date.now()/1000/60/60) - time
       return diff
     } else {
-      return ''
+      return null
     }
   }
 

@@ -3,7 +3,22 @@ import Task from './Task'
 
 const SubTask = ({ mainTask, tasks, taskNum, durationList, handleClick }) => {
   //get lowest duration and use it on the main task
-  let lowestNum = 0
+
+  //find all not null
+  let valids = []
+  for(let i = 1; i < tasks.length; i++) {
+    if(durationList[`${taskNum}${i}`] !== null) {
+      valids.push(i)
+    }
+  }
+
+  //set starting point
+  let lowestNum
+  if(valids.length > 0) {
+    lowestNum = valids[0]
+  }
+
+  //find lowest value
   for(let i = 1; i < tasks.length; i++) {
     if(durationList[`${taskNum}${i}`] < durationList[`${taskNum}${lowestNum}`]) {
       lowestNum = i
