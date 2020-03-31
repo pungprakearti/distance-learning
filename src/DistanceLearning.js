@@ -1,57 +1,69 @@
 import React, { Component } from 'react'
+import Task from './Task'
+import SubTask from './SubTask'
 import './distanceLearning.scss'
 
 export default class DistanceLearning extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks: [
-        'Daily check-in',
-        'Reading 20 minutes, and filling our the reading log',
-        'Singing the Phonics Song and reviewing phonic sounds',
-        'Completing a Eureka Math lesson',
-        'Practicing your math facts(sprint, flash cards, educational app/game)',
-        'Counting and/or writing numbers(by 1s, 2s, 5s, or 10s)',
-        'Completing a writing activity(journal entry, animal unit writing activity)',
-        'Use Lexia, for at least 20-30 minutes',
-        'Selecting 1-2 tasks from the included packet'
-      ],
-      lastComplete: [],
+      duration: {}
     }
 
     this.ls = window.localStorage
+    this.tasks = [
+      ['Daily check-in'],
+      ['Reading 20 minutes, and filling out the reading log'],
+      ['Singing the Phonics Song and reviewing phonic sounds'],
+      ['Completing a Eureka Math lesson'],
+      ['Practicing your math facts', ['sprint', 'flash cards', 'Zearn']],
+      ['Counting and/or writing numbers', ['1s', '2s', '5s', '10s']],
+      ['Completing a writing activity',['journal entry', 'animal unit writing activity']],
+      ['Use Lexia, for at least 20-30 minutes'],
+      ['Selecting 1-2 tasks from the included packet']
+    ]
   }
 
   componentDidMount() {
-    this.getLastComplete()
+    this.getDuration()
   }
 
-  getLastComplete = () => {
-    let tempTimes = []
-    this.state.tasks.map((task, i) => {
-      return tempTimes.push(this.getTime(i))
+  //populate this.state.duration from local storage
+  getDuration = () => {
+    let listNums = []
+    for(let i = 0; i < this.tasks.length; i++) {
+      listNums.push(i)
+      if(this.tasks[i].length > 1) {
+        for(let j = 0; j < this.tasks[i][1].length; j++) {
+          listNums.push(`${i}${j}`)
+        }
+      }
+    }
+
+    let tempTimes = {}
+    listNums.map((taskNum) => {
+      return tempTimes[taskNum] = (this.getTime(taskNum))
     })
+
     this.setState({
-      lastComplete: [...tempTimes]
+      duration: {...tempTimes}
     })
   }
 
+  //set the current time for the task and save in local storage
   setTime = (e) => {
     let task = e.target.dataset.task
     let hours = Math.floor(Date.now()/1000/60/60)
     this.ls.setItem(`task${task}`, hours)
-    this.getLastComplete()
+    this.getDuration()
   }
 
+  //get the time duration since last set from local storage
   getTime = (task) => {
     let time = this.ls.getItem(`task${task}`)
     if(time) {
-      let diff = time - Math.floor(Date.now()/1000/60/60)
-      if(diff === 0) {
-        return '< 1h'
-      } else {
-        return `${diff}h`
-      }
+      let diff = Math.floor(Date.now()/1000/60/60) - time
+      return diff
     } else {
       return ''
     }
@@ -59,20 +71,36 @@ export default class DistanceLearning extends Component {
 
   render () {
     return (
-      <div className='DL-tasks'>
-        <ul>
-          {this.state.tasks.map((task, i) => {
+      <ul className='DL-tasks'>
+        {this.tasks.map((task, i) => {
+          let mainTask = (
+            <li className='DL-tasks_Item' key={i}>
+              <Task
+                title={task[0]}
+                duration={this.state.duration[i]}
+                taskNum={i}
+                handleClick={this.setTime}
+              />
+            </li>
+          )
+          if(task.length > 1) {
             return (
-              <li key={i} className='DL-tasks_Item'>
-                <button className='DL-tasks_Button' onClick={this.setTime} data-task={i}>
-                  <span className='DL-tasks_Text' data-task={i}>{task}</span>
-                  <span className='DL-tasks_Text' data-task={i}>{this.state.lastComplete[i]}</span>
-                </button>
-              </li>
+              <SubTask
+                mainTask={task[0]}
+                tasks={task[1]}
+                taskNum={i}
+                durationList={this.state.duration}
+                handleClick={this.setTime}
+                key={i}
+              />
             )
-          })}
-        </ul>
-      </div>
+          } else {
+            return (
+              mainTask
+            )
+          }
+        })}
+      </ul>
     )
   }
 }
