@@ -4,9 +4,16 @@ import './App.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <DistanceLearning />
-      <a className='App_Link' href='https://github.com/pungprakearti/distance-learning'>Github repository</a>
+      <div className='App_Github'>
+        <a
+          className='App_GithubLink'
+          href='https://github.com/pungprakearti/distance-learning'
+        >
+          Github repository
+        </a>
+      </div>
     </div>
   );
 }

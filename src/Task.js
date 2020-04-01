@@ -4,19 +4,20 @@ const Task = ({ title, duration, taskNum, handleClick }) => {
   //format duration and set color class
   let cName
   if(duration === 0) {
-    duration = ':)'
     cName = 'color__current'
+    duration = ':)'
   } else if(duration >= 12) {
     cName = 'color__long'
     duration = `${duration}h`
   } else if(duration >= 4) {
     cName = 'color__medium'
     duration = `${duration}h`
-  } else if(duration === null) {
+  } else if(!duration) {
+    cName = ''
     duration = ''
   } else if(duration) {
-    duration = duration + 'h'
     cName = 'color__current'
+    duration = duration + 'h'
   }
 
   return (

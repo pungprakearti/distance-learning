@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react'
 import Task from './Task'
 
-const SubTask = ({ mainTask, tasks, taskNum, durationList, handleClick }) => {
+const SubTask = ({ mainTask, tasks, taskNum, durationList, handleClick }) => {  
   //get lowest duration and use it on the main task
-
   //find all not null
   let valids = []
-  for(let i = 1; i < tasks.length; i++) {
+  for(let i = 0; i < tasks.length + 1; i++) {
     if(durationList[`${taskNum}${i}`] !== null) {
       valids.push(i)
     }
@@ -14,14 +13,15 @@ const SubTask = ({ mainTask, tasks, taskNum, durationList, handleClick }) => {
 
   //set starting point
   let lowestNum
-  if(valids.length > 0) {
+  if(valids.length === 1) {
     lowestNum = valids[0]
-  }
+  } else if(valids.length > 1) {
+    lowestNum = valids[0]
 
-  //find lowest value
-  for(let i = 1; i < tasks.length; i++) {
-    if(durationList[`${taskNum}${i}`] < durationList[`${taskNum}${lowestNum}`]) {
-      lowestNum = i
+    for(let i = 1; i < valids.length; i++) {
+      if(durationList[`${taskNum}${valids[i]}`] < durationList[`${taskNum}${lowestNum}`]) {
+        lowestNum = valids[i]
+      }
     }
   }
 

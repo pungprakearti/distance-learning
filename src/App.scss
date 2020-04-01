@@ -1,13 +1,16 @@
-.App_Link {
-  display: block;
-  text-decoration: none;
+.App_Github {
   text-align: center;
-  color: rgb(75, 75, 75);
   margin-bottom: 20px;
-  transition: all 0.25s ease;
 
-  &:hover,
-  &:focus {
-    color: gray
+  &Link {
+    display: inline;
+    text-decoration: none;
+    color: rgb(75, 75, 75);
+    transition: all 0.25s ease;
+
+    &:hover,
+    &:focus {
+      color: gray
+    }
   }
 }
