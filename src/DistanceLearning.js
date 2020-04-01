@@ -13,6 +13,7 @@ export default class DistanceLearning extends Component {
     this.ls = window.localStorage
     this.tasks = [
       ['Daily check-in'],
+      ['Daily video'],
       ['Reading 20 minutes, and filling out the reading log'],
       ['Singing the Phonics Song and reviewing phonic sounds'],
       ['Completing a Eureka Math lesson'],
