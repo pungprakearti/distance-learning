@@ -1,3 +1,16 @@
+I made this app to keep track of what daily tasks we've completed for distance learning during the Covid-19 pandemic.
+
+It's hosted on netlify here: <a href="https://awesome-mcnulty-cd5df2.netlify.com/">https://awesome-mcnulty-cd5df2.netlify.com/</a>
+
+The times are saved locally and the app is mobile friendly as well.
+
+#FlattenTheCurve
+
+<p align="center">
+  <img src="distance-learning-preview.png" alt="Task list with different glowing colors" />
+</p>
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,4 +79,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# distance-learning
