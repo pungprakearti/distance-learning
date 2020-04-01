@@ -20,7 +20,9 @@ export default class DistanceLearning extends Component {
       ['Counting and/or writing numbers', ['1s', '2s', '5s', '10s']],
       ['Completing a writing activity',['journal entry', 'animal unit writing activity']],
       ['Use Lexia, for at least 20-30 minutes'],
-      ['Selecting 1-2 tasks from the included packet']
+      ['Selecting 1-2 tasks from the included packet'],
+      ['P. E.'],
+      ['Brain break']
     ]
   }
 
