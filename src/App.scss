@@ -5,12 +5,12 @@
   &Link {
     display: inline;
     text-decoration: none;
-    color: rgb(75, 75, 75);
+    color: #707070;
     transition: all 0.25s ease;
 
     &:hover,
     &:focus {
-      color: gray
+      color: #a0a0a0
     }
   }
 }

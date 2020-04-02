@@ -6,10 +6,10 @@ const Task = ({ title, duration, taskNum, handleClick }) => {
   if(duration === 0) {
     cName = 'color__current'
     duration = ':)'
-  } else if(duration >= 12) {
+  } else if(duration >= 24) {
     cName = 'color__long'
     duration = `${duration}h`
-  } else if(duration >= 4) {
+  } else if((duration >= 8) && (duration < 24)) {
     cName = 'color__medium'
     duration = `${duration}h`
   } else if(!duration) {
