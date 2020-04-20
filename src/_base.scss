@@ -1,0 +1,22 @@
+$color-current: #b67300;
+$color-medium: #a0300d;
+$color-long: #791313;
+$color-border-current: #f49e0b;
+$color-border-medium: #df3400;
+$color-border-long: #9f0000;
+$color-text: #d0f3ff;
+
+/* Mixins */
+@mixin taskButton() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 60px;
+  font-size: 18px;
+  color: $color-text;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
+}

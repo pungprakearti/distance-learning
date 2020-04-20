@@ -1,10 +1,4 @@
-$color-current: #b67300;
-$color-medium: #a0300d;
-$color-long: #791313;
-$color-border-current: #f49e0b;
-$color-border-medium: #df3400;
-$color-border-long: #9f0000;
-$color-text: #d0f3ff;
+@import './base';
 
 .DL-tasks {
   max-width: 300px;
@@ -16,19 +10,10 @@ $color-text: #d0f3ff;
   }
 
   &_Button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    font-size: 18px;
-    color: $color-text;
+    @include taskButton;
+
     background-color: #4a2927;
     border: 2px solid #632c28;
-    border-radius: 10px;
-    padding: 0 10px;
-    margin-bottom: 10px;
-    transition: all 0.5s ease;
 
     &:hover {
       cursor: pointer;
