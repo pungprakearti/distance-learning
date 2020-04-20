@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Task from './Task'
 import SubTask from './SubTask'
-import './distanceLearning.scss'
+import './taskList.scss'
 
-export default class DistanceLearning extends Component {
+export default class TaskList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -11,20 +11,7 @@ export default class DistanceLearning extends Component {
     }
 
     this.ls = window.localStorage
-    this.tasks = [
-      ['Daily check-in'],
-      ['Daily video'],
-      ['Reading 20 minutes, and filling out the reading log'],
-      ['Singing the Phonics Song and reviewing phonic sounds'],
-      ['Completing a Eureka Math lesson'],
-      ['Practicing your math facts', ['sprint', 'flash cards', 'Zearn']],
-      ['Counting and/or writing numbers', ['1s', '2s', '5s', '10s']],
-      ['Completing a writing activity',['journal entry', 'animal unit writing activity']],
-      ['Use Lexia, for at least 20-30 minutes'],
-      ['Selecting 1-2 tasks from the included packet'],
-      ['P. E.'],
-      ['Brain break']
-    ]
+    this.tasks = this.props.tasks
   }
 
   componentDidMount() {
@@ -60,13 +47,13 @@ export default class DistanceLearning extends Component {
   setTime = (e) => {
     let task = e.target.dataset.task
     let hours = Math.floor(Date.now()/1000/60/60)
-    this.ls.setItem(`task${task}`, hours)
+    this.ls.setItem(`task${this.props.taskNum}_${task}`, hours)
     this.getDuration()
   }
 
   //get the time duration since last set from local storage
   getTime = (task) => {
-    let time = this.ls.getItem(`task${task}`)
+    let time = this.ls.getItem(`task${this.props.taskNum}_${task}`)
     if(time) {
       let diff = Math.floor(Date.now()/1000/60/60) - time
       return diff

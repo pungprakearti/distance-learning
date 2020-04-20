@@ -1,0 +1,27 @@
+@import './base';
+
+.selector {
+  &_Buttons {
+    display: flex;
+    margin: 20px 0 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &Btn {
+      @include taskButton;
+
+      width: auto;
+      padding: 0 40px;
+      border: 2px solid #14285c;
+      background-color: #24657d;
+      margin: 5px 10px;
+
+      &.selected {
+        border: 2px solid #4b7680;
+        background-color: #9dbeca;
+        box-shadow: 0 0 20px #9dbeca;
+        color: #1e2021;
+      }
+    }
+  }
+}
