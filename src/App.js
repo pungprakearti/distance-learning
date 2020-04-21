@@ -28,7 +28,7 @@ function App() {
         ['Practice writing', ['numbers', 'letters']],
         ['Coloring'],
         ['Blocks'],
-        ['Art project'],
+        ['Gardening'],
         ['P. E.'],
         ['Brain break']
       ]
